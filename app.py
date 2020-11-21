@@ -4,8 +4,7 @@ from GenerateSpectrogram import Train_Voice
 from TestVoice import Check_Voice
 from UserList import UserList
 import json
-
-# from gevent.pywsgi import WSGIServer
+import os
 
 app = Flask(__name__)
 @app.route('/test', methods=['GET', 'POST'])
@@ -21,6 +20,8 @@ def checkVoice():
 
         print("this is name of predicted user")
         print(predicted_user)
+        os.remove('Check_audio_file/'+file.filename)
+        os.remove('Generated_test_image/'+file.filename.split('.')[0]+'.jpg')
         # if (name.split('.')[0] == (file.filename.split('.')[0])):
         #     status = {'status' : 'true'}
         # else:
