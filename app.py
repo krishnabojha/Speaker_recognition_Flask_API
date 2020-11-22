@@ -7,6 +7,8 @@ import json
 import os
 
 app = Flask(__name__)
+
+# predicting the speaker by using audio file sent from user
 @app.route('/test', methods=['GET', 'POST'])
 def checkVoice():
     if request.method == 'POST':
@@ -22,15 +24,11 @@ def checkVoice():
         print(predicted_user)
         os.remove('Check_audio_file/'+file.filename)
         os.remove('Generated_test_image/'+file.filename.split('.')[0]+'.jpg')
-        # if (name.split('.')[0] == (file.filename.split('.')[0])):
-        #     status = {'status' : 'true'}
-        # else:
-        #     status = {'status' : 'false'}
-        # return json.dumps(status)
         return predicted_user[0] + '_' + predicted_user[1]
     else:
         return "file is not saved"  
 
+# Convert the audio file to spectrogram and save it in the image format
 @app.route('/train', methods =['GET','POST'])
 def trainVoice():
     if request.method == 'POST':
@@ -43,7 +41,6 @@ def trainVoice():
         return "200"
     else:
         return "file is not saved" 
-    # return "This is user check of user"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=105)

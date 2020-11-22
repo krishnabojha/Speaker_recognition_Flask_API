@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 class Train_Voice:
     #Converts the audio into spectrogram.
+    # where mode determine that the created spectrogram is of test or train audio file
     def create_spectrogram(self, filename, mode):
         if mode == 'train':
             filepath='Test_audio_files/'+filename
@@ -15,7 +16,7 @@ class Train_Voice:
             filepath='Check_audio_file/'+filename
             new_name=filename.split('.')[0]
             save_path='Generated_test_image/'+new_name+'.jpg'
-        # create_spectrogram(filepath,savepath)
+
         plt.interactive(False)
         clip,sample_rate=librosa.load(filepath,sr=None)
         fig=plt.figure(figsize=[0.72,0.72])

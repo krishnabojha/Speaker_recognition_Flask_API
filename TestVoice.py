@@ -13,6 +13,7 @@ class Check_Voice:
     def match_voice(self, filename):
         model=load_model('SpeakerID_best.hdf5')
         data = pd.read_csv("UserListCSV/UserList.csv")
+        # remember the first row of CSV file is header 
         all_files_list= list(data.iloc[:, 0])
         score_list=[]
         img1=cv2.imread('Generated_test_image/'+filename)
